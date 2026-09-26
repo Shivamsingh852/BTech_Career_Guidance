@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Your AI Career Recommendation</h2>
+    <div style="background: #e9ecef; padding: 20px; border-radius: 8px; margin-top:20px;">
+        <h1 style="color: #007bff;">{{ career }}</h1>
+        <p>Based on our Machine Learning analysis of your academic background, skills, and personality.</p>
+    </div>
+    
+    <h3><br>🚀 In-Demand Skills to Master</h3>
+    <ul>
+        {% for skill in resources.skills %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3><br>📚 Recommended Online Courses</h3>
+    <ul>
+        {% for course in resources.courses %}
+            <li><strong>{{ course.name }}</strong> (via {{ course.platform }})</li>
+        {% endfor %}
+    </ul>
+
+    <h3><br>🏆 Suggested Certifications</h3>
+    <ul>
+        {% for cert in resources.certifications %}
+            <li>{{ cert }}</li>
+        {% endfor %}
+    </ul>
+    
+    <div style="margin-top:40px; padding:20px; background:white; border:1px solid #ddd; border-radius:8px;">
+        <h3>Was this recommendation helpful?</h3>
+        <form action="/submit_feedback" method="POST">
+            <input type="hidden" name="career" value="{{ career }}">
+            <label>Rate (1 to 5):</label>
+            <select name="rating" required style="width:100px; display:inline-block;">
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Okay</option>
+                <option value="2">2 - Poor</option>
+                <option value="1">1 - Terrible</option>
+            </select><br><br>
+            <label>Comments (Optional):</label>
+            <textarea name="comments" rows="3" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;"></textarea><br><br>
+            <button type="submit" style="background:#28a745;">Submit Feedback</button>
+        </form>
+    </div>
+
+    <div style="margin-top:20px;">
+        <a href="/profile" style="background:#6c757d; color:white; padding:10px 15px; text-decoration:none; border-radius:4px;">Update Profile</a>
+    </div>
+{% endblock %}

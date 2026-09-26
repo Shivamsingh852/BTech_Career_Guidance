@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Administrator Dashboard</h2>
+    <p>Welcome, Admin! Here is the analytics and performance report for the AI Recommendation Engine.</p>
+
+    {% if graphJSON %}
+        <!-- Plotly Chart container -->
+        <div id="chart" style="background:white; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); margin-top:20px;"></div>
+        
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script type="text/javascript">
+            var graphs = {{ graphJSON | safe }};
+            Plotly.newPlot('chart', graphs.data, graphs.layout);
+        </script>
+        
+        <h3 style="margin-top:40px;">Raw User Feedback Data</h3>
+        <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+            <tr style="background:#007bff; color:white;">
+                <th style="padding:10px; border:1px solid #ddd;">User ID</th>
+                <th style="padding:10px; border:1px solid #ddd;">Predicted Career</th>
+                <th style="padding:10px; border:1px solid #ddd;">Rating (1-5)</th>
+                <th style="padding:10px; border:1px solid #ddd;">Comments</th>
+            </tr>
+            {% for fb in feedbacks %}
+            <tr>
+                <td style="padding:10px; border:1px solid #ddd; text-align:center;">{{ fb.user_id }}</td>
+                <td style="padding:10px; border:1px solid #ddd;">{{ fb.predicted_career }}</td>
+                <td style="padding:10px; border:1px solid #ddd; text-align:center;">{{ fb.rating }}</td>
+                <td style="padding:10px; border:1px solid #ddd;">{{ fb.comments }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div class="alert" style="background:#ffc107; color:#333;">No feedback data has been collected yet. Please use the application as a normal user and submit feedback to see analytics here.</div>
+    {% endif %}
+{% endblock %}

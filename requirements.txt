@@ -1,0 +1,12 @@
+Flask
+pandas
+scikit-learn
+numpy
+nltk
+plotly
+matplotlib
+Werkzeug
+openai
+python-dotenv
+Flask-SQLAlchemy
+Flask-Login

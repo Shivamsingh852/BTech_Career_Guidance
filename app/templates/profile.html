@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>My Profile & Assessment</h2>
+    <form method="POST">
+        <h3>Academic Information</h3>
+        <label>Overall Academic Percentage (%)</label>
+        <input type="number" step="0.01" name="academic_percentage" value="{{ user.academic_percentage or '' }}" required>
+        
+        <h3>Skill Assessment (1-10)</h3>
+        <label>Programming Skill</label>
+        <input type="number" name="programming_skill" min="1" max="10" value="{{ user.programming_skill or '' }}" required>
+        
+        <label>Communication Skill</label>
+        <input type="number" name="communication_skill" min="1" max="10" value="{{ user.communication_skill or '' }}" required>
+        
+        <label>Analytical Skill</label>
+        <input type="number" name="analytical_skill" min="1" max="10" value="{{ user.analytical_skill or '' }}" required>
+        
+        <h3>Interests & Personality</h3>
+        <label>Primary Interest</label>
+        <select name="interests">
+            <option value="Coding" {% if user.interests == 'Coding' %}selected{% endif %}>Coding</option>
+            <option value="Design" {% if user.interests == 'Design' %}selected{% endif %}>Design</option>
+            <option value="Management" {% if user.interests == 'Management' %}selected{% endif %}>Management</option>
+            <option value="Data Analysis" {% if user.interests == 'Data Analysis' %}selected{% endif %}>Data Analysis</option>
+        </select>
+        
+        <label>Personality Type</label>
+        <select name="personality_type">
+            <option value="Introvert" {% if user.personality_type == 'Introvert' %}selected{% endif %}>Introvert</option>
+            <option value="Extrovert" {% if user.personality_type == 'Extrovert' %}selected{% endif %}>Extrovert</option>
+        </select>
+        
+        <button type="submit">Save Profile</button>
+    </form>
+{% endblock %}
