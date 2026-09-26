@@ -51,6 +51,4 @@ An intelligent web platform designed as a B.Tech final year project. This system
 * **Students:** Register for a new account, complete your profile assessment (Academic %, Programming Skill, Communication, etc.), and instantly receive your AI-generated career path alongside recommended courses.
 * **Admin:** Register an account with the exact username `admin` to unlock the **Admin Dashboard** in the navigation bar. Here, you can view interactive charts of user feedback.
 
-## 📝 License
 
-This project was built for educational purposes as a B.Tech final year submission.
